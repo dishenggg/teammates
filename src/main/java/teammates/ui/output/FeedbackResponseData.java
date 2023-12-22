@@ -19,6 +19,8 @@ public class FeedbackResponseData extends ApiOutput {
 
     private final FeedbackResponseDetails responseDetails;
 
+    private final Long updatedAt;
+
     @Nullable
     private FeedbackResponseCommentData giverComment;
 
@@ -27,6 +29,7 @@ public class FeedbackResponseData extends ApiOutput {
         this.giverIdentifier = feedbackResponseAttributes.getGiver();
         this.recipientIdentifier = feedbackResponseAttributes.getRecipient();
         this.responseDetails = feedbackResponseAttributes.getResponseDetailsCopy();
+        this.updatedAt = feedbackResponseAttributes.getUpdatedAt().toEpochMilli();
     }
 
     public String getFeedbackResponseId() {
@@ -47,6 +50,10 @@ public class FeedbackResponseData extends ApiOutput {
 
     public FeedbackResponseCommentData getGiverComment() {
         return giverComment;
+    }
+
+    public Long getUpdatedAt() {
+        return updatedAt;
     }
 
     public void setGiverComment(FeedbackResponseCommentData giverComment) {

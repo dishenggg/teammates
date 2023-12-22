@@ -620,6 +620,9 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
                     : this.feedbackResponsesService.getDefaultFeedbackResponseDetails(model.questionType),
                 responseId: matchedExistingResponse ? matchedExistingResponse.feedbackResponseId : '',
                 isValid: true,
+                updatedAt: matchedExistingResponse
+                    ? matchedExistingResponse.updatedAt
+                    : 0,
               };
               if (matchedExistingResponse && matchedExistingResponse.giverComment) {
                 submissionForm.commentByGiver = this.getCommentModel(
@@ -810,6 +813,10 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
           modalRef.componentInstance.answers = answers;
           modalRef.componentInstance.notYetAnsweredQuestions = Array.from(notYetAnsweredQuestions.values());
           modalRef.componentInstance.failToSaveQuestions = failToSaveQuestions;
+          
+          questionSubmissionForms.forEach((questionSubmissionForm: QuestionSubmissionFormModel) => {
+            this.getNewUpdatedAt(questionSubmissionForm);
+          })
         }),
     ).subscribe();
   }
@@ -956,5 +963,32 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
   private isFeedbackEndingLessThanFifteenMinutes(feedbackSession: FeedbackSession): boolean {
     const userSessionEndingTime = DeadlineExtensionHelper.getOngoingUserFeedbackSessionEndingTimestamp(feedbackSession);
     return (userSessionEndingTime - Date.now()) < Milliseconds.IN_FIFTEEN_MINUTES;
+  }
+
+  private getNewUpdatedAt(model: QuestionSubmissionFormModel): void {
+    this.feedbackResponsesService.getFeedbackResponse({
+      questionId: model.feedbackQuestionId,
+      intent: this.intent,
+      key: this.regKey,
+      moderatedPerson: this.moderatedPerson,
+    }).pipe(finalize(() => {}))
+      .subscribe({
+        next: (existingResponses: FeedbackResponsesResponse) => {
+          model.recipientList.forEach((recipient: FeedbackResponseRecipient) => {
+            const matchedExistingResponse: FeedbackResponse | undefined =
+                existingResponses.responses.find(
+                    (response: FeedbackResponse) => response.recipientIdentifier === recipient.recipientIdentifier);
+            
+            if (matchedExistingResponse && matchedExistingResponse.updatedAt) {
+              const matchingForm: FeedbackResponseRecipientSubmissionFormModel | undefined = model.recipientSubmissionForms.find(
+                (form) => form.responseId == matchedExistingResponse.feedbackResponseId);
+              if (matchingForm) {
+                matchingForm.updatedAt = matchedExistingResponse.updatedAt;
+              }
+            }
+          });
+        },
+        error: (resp: ErrorMessageOutput) => this.statusMessageService.showErrorToast(resp.error.message),
+      });
   }
 }

@@ -25,6 +25,7 @@ import {
   QuestionSubmissionFormMode,
   QuestionSubmissionFormModel,
 } from './question-submission-form-model';
+import { TimezoneService } from '../../../services/timezone.service';
 
 /**
  * The question submission form for a question.
@@ -80,6 +81,9 @@ export class QuestionSubmissionFormComponent implements DoCheck {
   @Input()
   isSubmitAllClicked: boolean = false;
 
+  @Input()
+  feedbackSessionTimezone: string = '';
+
   @Output()
   isSubmitAllClickedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -125,6 +129,8 @@ export class QuestionSubmissionFormComponent implements DoCheck {
     showGiverNameTo: [],
     showRecipientNameTo: [],
     showResponsesTo: [],
+
+    formattedUpdatedAt: '',
   };
 
   recipientLabelType: FeedbackRecipientLabelType = FeedbackRecipientLabelType.INCLUDE_NAME;
@@ -137,10 +143,11 @@ export class QuestionSubmissionFormComponent implements DoCheck {
   isEveryRecipientSorted: boolean = false;
 
   constructor(private feedbackQuestionsService: FeedbackQuestionsService,
-    private feedbackResponseService: FeedbackResponsesService) {
+    private feedbackResponseService: FeedbackResponsesService, private timezoneService: TimezoneService,) {
     this.visibilityStateMachine =
       this.feedbackQuestionsService.getNewVisibilityStateMachine(
         this.model.giverType, this.model.recipientType);
+    //this.timezoneService.getTzVersion(); // import timezone service to load timezone data
   }
 
   get hasSectionTeam(): boolean {
@@ -157,6 +164,10 @@ export class QuestionSubmissionFormComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
+    if (this.model.isLoaded) {
+      this.getLastUpdated();
+    }
+
     if (this.model.isLoaded && !this.isEveryRecipientSorted) {
       this.sortRecipientsByName();
     }
@@ -176,6 +187,7 @@ export class QuestionSubmissionFormComponent implements DoCheck {
       } else if (this.model.recipientSubmissionForms.every((form) => form.responseId.length === 0)) {
         this.isSaved = false;
       }
+      this.getLastUpdated();
     }
   }
 
@@ -446,4 +458,15 @@ export class QuestionSubmissionFormComponent implements DoCheck {
   refreshCssForDropdownMCQ(add: boolean): void {
     this.isMCQDropDownEnabled = add;
   }
+
+  /**
+   * Gets the last updated time.
+   */
+    getLastUpdated(): void {
+      const TIME_FORMAT: string = 'ddd, DD MMM, YYYY, hh:mm A zz';
+      const lastUpdated: number = this.model.recipientSubmissionForms.map((form) => form.updatedAt || 0).reduce((maxVal, curVal) => Math.max(maxVal, curVal), 0)
+      if (lastUpdated > 0) {
+        this.model.formattedUpdatedAt = this.timezoneService.formatToString(lastUpdated, this.feedbackSessionTimezone, TIME_FORMAT)
+      }
+    }
 }

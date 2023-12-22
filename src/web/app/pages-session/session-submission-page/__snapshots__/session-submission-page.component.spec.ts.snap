@@ -1146,6 +1146,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 role="alert"
               >
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -1365,6 +1368,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 role="alert"
               >
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -1472,6 +1478,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
               <div
                 class="col-12 constraint-margins"
               >
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -1774,6 +1783,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -1984,6 +1996,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -2209,6 +2224,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -2665,6 +2683,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -3005,6 +3026,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -3283,6 +3307,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -3510,6 +3537,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -3997,6 +4027,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 role="alert"
               >
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -4217,6 +4250,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 role="alert"
               >
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -4324,6 +4360,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
               <div
                 class="col-12 constraint-margins"
               >
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -4632,6 +4671,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -4844,6 +4886,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -5071,6 +5116,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>
@@ -5529,6 +5577,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -5879,6 +5930,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -6159,6 +6213,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </button>
                 </div>
               </div>
+              <div>
+                Last submitted: 
+              </div>
             </div>
           </div>
         </div>
@@ -6387,6 +6444,9 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     </span>
                   </button>
                 </div>
+              </div>
+              <div>
+                Last submitted: 
               </div>
             </div>
           </div>

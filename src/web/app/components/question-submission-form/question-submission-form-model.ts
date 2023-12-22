@@ -51,6 +51,8 @@ export interface QuestionSubmissionFormModel {
   isLoading: boolean;
   isLoaded: boolean;
   isTabExpanded: boolean;
+
+  formattedUpdatedAt?: String;
 }
 
 /**
@@ -70,7 +72,7 @@ export interface FeedbackResponseRecipientSubmissionFormModel {
   responseId: string;
   recipientIdentifier: string;
   responseDetails: FeedbackResponseDetails;
-
+  updatedAt?: number
   isValid: boolean;
 
   // comment by giver
